@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta</title>
+    <style>
+        body {
+            background-color:transparent;
+            font-family: 'Arial', sans-serif;
+            color: #fcfcfc;
+            background-image: url("nuevo.jpg");
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: transparent;
+            }
+            h1 {
+            text-align: up;
+            color: #0066cc;
+            font-size: 5em; 
+            margin-top: 20px;
+
+            display: flex;
+            height: 100vh; 
+            align-items: up; 
+            justify-content: center; 
+        }
+
+        #passwordContainer {
+            position: absolute;
+            margin-top: 20px;
+        }
+        
+        #passwordInput {
+            margin-right: 10px;
+        }
+        #envelope {
+            position: absolute;
+            cursor: pointer;
+        }
+        #letter {
+            display: none;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 1.5em;
+            color: #333;
+            text-align: center;
+        }
+        .heart {
+            position: absolute;
+            transform-origin: center bottom;
+            animation: rotateHeart 2s linear infinite, changeColor 2s linear infinite;
+            display: none;
+            font-size: 48px;
+        }
+        @keyframes fall {
+            0% { 
+                transform: translateY(0);
+            }
+            100% {
+                 transform: translateY(100vh); 
+                }
+        }
+        @keyframes changeColor {
+            0% { color: red; }
+            25% { color: pink; }
+            50% { color: purple; }
+            75% { color: red; }
+            100% { color: pink; }
+        }
+    </style>
+</head>
+<body>
+    <div id="heartContainer"></div>
+    <h1 style="text-align: center; color: #000000;">Para mi apreciada amada</h1>
+
+    <div id="passwordContainer">
+        <label for="passwordInput">Contraseña:</label>
+        <input type="password" id="passwordInput" />
+        <button onclick="checkPassword()">Abrir sobre</button>
+    </div>
+
+    <div id="envelope" onclick="showLetter()">
+        <div id="letter">Para Laura;
+            
+            Querida Laura,
+
+            En este hermoso 14 de febrero, quiero dedicarte estas palabras llenas de afecto y cariño. Desde que te conocí, mi vida ha tomado un rumbo más brillante y especial. Cada momento a tu lado ha sido una chispa que ilumina mi día y llena mi corazón de alegría.
+            
+            Hoy, en el Día de San Valentín, quisiera expresarte lo agradecido que estoy por tenerte en mi vida. Aunque las circunstancias económicas nos han presentado obstáculos y no hemos podido salir tanto como quisiéramos, quiero que sepas que la conexión que compartimos va más allá de cualquier situación material.
+            
+            Tus risas, tu compañía y la complicidad que hemos construido son tesoros que atesoro en lo más profundo de mi ser. Aunque las salidas puedan ser limitadas por el momento, quiero que entiendas que el valor que le doy a nuestra relación va más allá de lo material.
+            
+            En cada pequeño gesto, en cada conversación y en cada momento compartido, he encontrado la felicidad. No importa dónde estemos ni cuánto gastemos, lo que realmente importa es la conexión que hemos cultivado y el afecto que crece entre nosotros día a día.
+            
+            En este día tan especial, quiero comprometerme a seguir construyendo nuestra historia juntos, superando los desafíos que se nos presenten. Estoy seguro de que con amor, paciencia y comprensión, podremos superar cualquier adversidad.
+            
+            Gracias por ser la luz en mi vida, por hacerla más colorida y significativa. Aunque las dificultades económicas puedan estar presentes, el amor que siento por ti es más fuerte que cualquier obstáculo. Espero con ansias el día en que podamos disfrutar de más momentos juntos, pero mientras tanto, celebro la fortuna de tenerte en mi vida.
+            
+            Feliz Día de San Valentín, mi querida Laura. Que este día esté lleno de amor, alegría y la promesa de un futuro compartido.
+            
+            Con todo mi cariño,   
+            
+        Jesus<br></div>
+        <div class="heart">❤️</div>
+    </div>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var heartContainer = document.getElementById('heartContainer');
+
+            function createHeart() {
+                var heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤️';
+
+                var randomX = Math.random() * window.innerWidth;
+                var randomY = Math.random() * window.innerHeight;
+
+                heart.style.left = randomX + '48px';
+                heart.style.top = randomY + '48px';
+
+                heartContainer.appendChild(heart);
+
+                setTimeout(function () {
+                    heart.style.display = 'block';
+                }, 100);
+
+                setTimeout(function () {
+                    heartContainer.removeChild(heart);
+                }, 3000);
+            }
+
+            setInterval(createHeart, 1000);
+        });
+    </script>
+
+    <script>
+
+function openEnvelope() {
+    var envelope = document.getElementById("envelope");
+    envelope.style.background = "#fff"; 
+    envelope.style.border = "2px solid #000";
+    document.getElementById("letter").style.display = "block";
+    document.getElementById("letter").style.fontSize = "55%";
+    document.querySelectorAll(".heart").forEach(function (heart) {
+        heart.style.display = "block";
+    });
+    console.log("Sobre abierto");
+
+    var nuevaVentana = window.open("", "_blank");
+            nuevaVentana.document.write('<html><head><title>Contenido de la Carta</title>');
+            nuevaVentana.document.write('<style>');
+            nuevaVentana.document.write('body {');
+            nuevaVentana.document.write('    background-image: url("fondo.jpg");');
+            nuevaVentana.document.write('    background-size: cover;'); 
+            nuevaVentana.document.write('    background-color: pink;');  
+            nuevaVentana.document.write('    display: flex;'); 
+            nuevaVentana.document.write('    align-items: center;');
+            nuevaVentana.document.write('    justify-content: center;');
+            nuevaVentana.document.write('    height: 100vh;');
+            nuevaVentana.document.write('    margin: 250;');
+            nuevaVentana.document.write("}");
+            nuevaVentana.document.write('</style></head><body>');
+            nuevaVentana.document.write('<div style="background-color: pink; padding: 20px;">');
+            nuevaVentana.document.write(document.getElementById("letter").innerHTML);
+
+
+            nuevaVentana.document.write('</div></body></html>');
+            window.close();
+}
+
+        function checkPassword() {
+            var password = document.getElementById("passwordInput").value;
+
+            if (password === "Laura") {
+                document.getElementById("envelope").classList.add("opened");
+                document.getElementById("envelope").style.display = "none";
+
+                document.querySelectorAll(".heart").forEach(function (heart) {
+                    heart.style.display="block";
+                });
+
+                openEnvelope();
+            } else {
+                alert("Contraseña incorrecta");
+            }
+        }
+
+        function showLetter() {
+            document.getElementById("letter").style.display = "block";
+            document.querySelectorAll(".heart").forEach(function (heart) {
+                heart.style.display = "block";
+            });
+        }
+    </script>
+</body>
+</html>
